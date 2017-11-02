@@ -1,4 +1,5 @@
-<div class="ui stackable menu">
+<div class="ui attached stackable menu">
+     
 
     <a class="item" href="./task">
         <i class="grid layout icon"></i>AddTask
