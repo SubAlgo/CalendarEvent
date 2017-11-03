@@ -18,7 +18,7 @@
         </div>
 
         <!-- Content -->
-        <div class="ui container">
+        <div class="ui text container">
              @yield('content')
         </div>
         

@@ -11,6 +11,7 @@
 |
 */
 
+Route::post('/test', 'valController@show');
 Route::get('/', function () {
     return view('welcome');
 });

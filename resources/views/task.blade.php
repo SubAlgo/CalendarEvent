@@ -6,14 +6,14 @@
 
         <h1>Task</h1>
 
-        <form method="POST" action="./">
-            <div class="ui container">
-                <div class="ui container">
+        <form method="POST" action="/test">
+            <div class="ui text container">
+                <div >
                     Task :
-                    <input type="text" name="task">
+                    <input type="text" name="txtTask" onchange="showTask()">
                 </div>
                 <p></p>
-                <div class="ui container">
+                <div >
                     Step :
                     <input type="text" name="step" id="step">
 
@@ -22,44 +22,28 @@
                     <span class="ui button primary" onclick="showSteplist()">Show Step</span>
                 </div>
             </div>
-
-            <div>
-                <lable>Show</lable>
-                <br>
-                <label>Task : </label>
-                <label name="showTask">tttt</label>
-                <br>
-
-                
-
-                <table>
-                    <tr>
-                        <td>Step: </td>
-                        <td>step[1]</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>step[2]</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>step[3]</td>
-                    </tr>
-
-                </table>
+            <div class="ui text container">
+                Task :
+                <label id="showTask"> </label>
+                <p></p>
+                <label>Step list:</label>
+                <ol id="showStep">
+            
+                </ol>
+                <input type="hidden" name="sTask" value="a"/>
+                <input type="hidden" name="sStep" value="s" />
+                <span>
+                     {{csrf_field()}}
+                    <input type="submit" class="positive ui button" value="Create Task">
+                </span>
             </div>
-            <span><input type="submit" class="positive ui button" value="Create Task"></span>
         </form>
 
-        <div>
-            Step list: 
-            <ul id="showStep">
-                
-            </ul>
-        </div>
+        
         
 
         <script>
+            var task;
             var stepList = [];
             function addStep() {
                 x = document.getElementsByName("step")[0].value;
@@ -71,11 +55,14 @@
                     x = "Step ["+stepList.length + "] : " + x;
                     document.getElementsByName('step')[0].value = '';
 
-                    var li = document.createElement("ul");
+                    var li = document.createElement("li");
                     var txt = document.createTextNode(x);
 
                     li.appendChild(txt);
                     document.getElementById('showStep').appendChild(li);
+
+                    document.getElementsByName(sStep).value=stepList;
+                   
                     //document.body.appendChild(li);
 
                     //var inputValue = x;
@@ -109,6 +96,16 @@
                 for (i=0; i<x; i++){
                     alert(stepList[i]);
                 }
+            }
+
+            function showTask() {
+                
+                var x = document.getElementsByName("txtTask")[0].value;
+               
+                document.getElementById('showTask').innerHTML = x;
+                task = x;
+                 document.getElementsByName(sTask).value = task;
+                //alert('task = ' + task);
             }
 
         </script>
