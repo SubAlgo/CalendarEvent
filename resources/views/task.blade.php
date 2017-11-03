@@ -15,10 +15,11 @@
                 <p></p>
                 <div class="ui container">
                     Step :
-                    <input type="text" name="step">
+                    <input type="text" name="step" id="step">
 
                     <!-- Add Step Button -->
                     <span class="ui button primary" onclick="addStep()">Add Step</span>
+                    <span class="ui button primary" onclick="showSteplist()">Show Step</span>
                 </div>
             </div>
 
@@ -28,6 +29,8 @@
                 <label>Task : </label>
                 <label name="showTask">tttt</label>
                 <br>
+
+                
 
                 <table>
                     <tr>
@@ -47,21 +50,65 @@
             </div>
             <span><input type="submit" class="positive ui button" value="Create Task"></span>
         </form>
+
+        <div>
+            Step list: 
+            <ul id="showStep">
+                
+            </ul>
+        </div>
         
 
         <script>
-            var param = [1,2,3];
+            var stepList = [];
             function addStep() {
                 x = document.getElementsByName("step")[0].value;
-                param[param.length] = x;
+                x = x.trim();
+                if (x === '') {
+                    alert('Please input step!!')   
+                } else {  
+                    stepList[stepList.length] = x;
+                    x = "Step ["+stepList.length + "] : " + x;
+                    document.getElementsByName('step')[0].value = '';
 
-                alert('member of array = '+param.length);
+                    var li = document.createElement("ul");
+                    var txt = document.createTextNode(x);
 
-                for (i=0; i <param.length; i++){
-                    alert(param[i]);
+                    li.appendChild(txt);
+                    document.getElementById('showStep').appendChild(li);
+                    //document.body.appendChild(li);
+
+                    //var inputValue = x;
+                    //alert('inputValue = ' + inputValue);
+                    /*alert('x = ' +x);
+                        alert('member of array = ' + stepList.length);
+
+                        for (i = 0; i < stepList.length; i++) {
+                            alert(stepList[i]);
+                        }
+                        */
                 }
-                //alert(param[param.length-1]);
-                //alert(param[param.length]);
+                //stepList[stepList.length] = x;
+
+               /* 
+               alert('member of array = '+stepList.length);
+
+                for (i=0; i <stepList.length; i++){
+                    alert(stepList[i]);
+                }
+                */
+                //alert(stepList[stepList.length-1]);
+                //alert(stepList[stepList.length]);
+
+                //var li = document.createElement("li");
+                //var inputValue = document.getElementById("myInput").value;
+            }
+
+            function showSteplist() {
+                x = stepList.length;
+                for (i=0; i<x; i++){
+                    alert(stepList[i]);
+                }
             }
 
         </script>
